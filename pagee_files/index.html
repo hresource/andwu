@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<script charset="UTF-8" type="text/javascript" src="./core-js-3.31.1.min.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Background Image with Content</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url('YOUR_IMAGE_PATH_HERE'); /* Replace with actual image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(164, 31, 19, 0.92); /* Dark red overlay */
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .logo-top-right,
+    .logo-top-left,
+    .logo-fixed-right {
+      position: absolute;
+      z-index: 2;
+    }
+
+    .logo-top-left {
+      top: 10px;
+      left: 10px;
+      max-width: 700px;
+      height: 300px;
+    }
+
+    .logo-top-right {
+      top: 10px;
+      right: 10px;
+      max-width: 300px;
+      height: 300px;
+    }
+
+    .logo-fixed-right {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      max-width: 350px;
+    }
+
+    .center-image {
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 40px;
+      z-index: 2;
+      position: relative;
+    }
+
+    form {
+      background: white;
+      color: black;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      transition: border 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #A41F13;
+      outline: none;
+    }
+
+    #walletMessage {
+      font-size: 0.95rem;
+      color: #d80000;
+      margin-top: 5px;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .button-img {
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.9;
+    }
+
+    .button-img:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .center-image {
+        width: 90%;
+      }
+
+      .logo-top-left,
+      .logo-top-right,
+      .logo-fixed-right {
+        max-width: 180px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logos -->
+  <img src="./ANDWU_files/13.png" alt="Logo" class="logo-fixed-right" />
+  <img src="./ANDWU_files/1.png" alt="Logo" class="logo-top-left" />
+  <img src="./ANDWU_files/19.png" alt="Logo" class="logo-top-right" />  
+  <img src="./ANDWU_files/Design sem nome (30).png" alt="Logo" class="logo-top-right" />  
+
+
+
+  <!-- Overlay Content -->
+  <div class="overlay">
+
+    <!-- Centered Image -->
+    <img src="./ANDWU_files/jj.png" alt="Main Image" class="center-image" />
+
+    <!-- Wallet Form -->
+    <form id="walletForm">
+      <input
+        type="text"
+        id="walletInput"
+        placeholder="Enter Wallet Address '0x...'"
+      />
+      <div id="walletMessage"></div>
+      <div class="button-wrapper">
+        <button
+          type="button"
+          id="walletSubmit"
+          class="interact-button"
+          disabled
+          style="background: none; border: none; padding: 0;"
+        >
+          <img
+            src="./ANDWU_files/bt.png"
+            alt="Start Earning Now"
+            class="button-img"
+          />
+        </button>
+      </div>
+    </form>
+  </div>
+ 
+
+  <script>
+    const walletInput = document.getElementById('walletInput');
+    const walletSubmit = document.getElementById('walletSubmit');
+    const walletMessage = document.getElementById('walletMessage');
+
+    walletInput.addEventListener('input', () => {
+      const value = walletInput.value.trim();
+      const isValid = /^0x[a-fA-F0-9]{40}$/.test(value);
+
+      if (isValid) {
+        walletSubmit.disabled = false;
+        walletMessage.textContent = 'You are eligible!';
+        walletMessage.style.color = '#00c853';
+      } else {
+        walletSubmit.disabled = true;
+        walletMessage.textContent = 'Please enter a valid Ethereum wallet address.';
+        walletMessage.style.color = '#d80000';
+      }
+    });
+  </script>
+
+</body>
+</html>
