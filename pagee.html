@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANDWU Stake Pool</title>  
-  <style>
+  <title>Join ANDWU Airdrop</title>  
+    <style>
     * {
       margin: 0;
       padding: 0;
@@ -18,12 +18,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-x: hidden;
       position: relative;
+      padding: 20px;
     }
 
-    /* Animated SVG background behind all content */
     #animated-bg {
       position: fixed;
       top: 0;
@@ -34,12 +34,12 @@
     }
 
     .container {
-      width: 90%;
+      width: 100%;
       max-width: 900px;
       background: #d30000;
       border: 2px solid #ffcb05;
       border-radius: 15px;
-      padding: 0px;
+      padding: 20px;
       position: relative;
       text-align: center;
       z-index: 1;
@@ -51,31 +51,23 @@
     }
 
     @keyframes moveBackground {
-      0% {
-        background-position: 0 0, 30px 30px;
-      }
-      100% {
-        background-position: 60px 60px, 90px 90px;
-      }
+      0% { background-position: 0 0, 30px 30px; }
+      100% { background-position: 60px 60px, 90px 90px; }
     }
 
     .lantern {
-      width: 200px;
-      height: 300px;
+      width: 120px;
+      height: auto;
       position: absolute;
-      top: 20px;
+      top: 10px;
     }
 
-    .lantern.left {
-      left: 20px;
-    }
-
-    .lantern.right {
-      right: 20px;
-    }
+    .lantern.left { left: 10px; }
+    .lantern.right { right: 10px; }
 
     .logo {
-      width: 300px;
+      width: 70%;
+      max-width: 300px;
       margin-top: 40px;
     }
 
@@ -83,6 +75,7 @@
       margin: 20px 0;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 10px;
     }
 
@@ -92,25 +85,22 @@
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
     }
-	/* Popup Styles */
+
+    .btn:active { transform: scale(0.98); }
+
+    /* Popup */
     .popup {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
       z-index: 10000;
-    }
-
-    .btn:active {
-      transform: scale(0.98);
     }
 
     .contract-box {
@@ -135,26 +125,19 @@
       cursor: pointer;
     }
 
-    .cloud,
-    .cloud2 {
+    .cloud, .cloud2 {
       position: absolute;
       bottom: 0;
-      width: 300px;
+      width: 150px;
       height: auto;
     }
 
-    .cloud {
-      left: 10px;
-    }
-
-    .cloud2 {
-      right: 10px;
-      height: 400px;
-    }
+    .cloud { left: 10px; }
+    .cloud2 { right: 10px; height: auto; }
 
     .button-img {
-      width: 130px;
-      max-width: 130%;
+      width: 150px;
+      max-width: 100%;
       height: auto;
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.2s ease;
@@ -165,25 +148,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 40px 0;
+      margin: 20px 0;
+      width: 100%;
     }
 
     #walletForm {
-      padding: 40px;
+      padding: 20px;
       border-radius: 8px;
-      width: 600px;
+      width: 100%;
+      max-width: 600px;
       text-align: center;
     }
 
     input[type="text"] {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 2px;
+      padding: 12px;
+      margin-bottom: 8px;
       border: 1px solid #ccc;
-      border-radius: 2px;
+      border-radius: 4px;
+      font-size: 16px;
     }
 
-    /* Notifications container and style */
+    /* Notifications */
     #notifications {
       position: fixed;
       top: 20px;
@@ -202,30 +188,39 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
       animation: fadeIn 0.5s ease;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+      .lantern { width: 90px; top: 5px; }
+      .logo { width: 80%; }
+      .cloud, .cloud2 { width: 100px; }
+      .button-img { width: 130px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 10px; }
+      .lantern { display: none; }
+      .cloud, .cloud2 { display: none; }
+      .logo { width: 90%; margin-top: 20px; }
+      .container { padding: 15px; }
+      .button-img { width: 120px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Notifications -->
   <div id="notifications"></div>
 
-  <!-- Animated SVG Background -->
   <svg id="animated-bg" viewBox="0 0 1440 320" preserveAspectRatio="none">
     <defs>
       <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -243,40 +238,31 @@
     </path>
   </svg>
 
-  <!-- Top-right Floating Logo -->
-  <img src="./pagee_files/13.png" alt="Logo" style="position:absolute; top:20px; right:20px; z-index: 2;">
+  <img src="./pagee_files/13.png" alt="Logo" style="position:absolute; top:20px; right:20px; z-index: 2; max-width:80px; width:15vw;">
 
-  <!-- Main Container -->
   <div class="container">
-    <div class="close-btn"></div>
-
     <img src="pagee_files/3.png" alt="Lantern" class="lantern left">
     <img src="pagee_files/5.png" alt="Lantern" class="lantern right">
-
     <img src="pagee_files/g.png" alt="Andwu Logo" class="logo">
 
-    <!-- Wallet Form Section -->
     <div id="wallet-address-wrapper">
       <form id="walletForm">
-        <div style="padding: 20px; border-radius: 10px; margin-bottom: 12px;">
+        <div style="padding: 10px; border-radius: 10px; margin-bottom: 12px;">
           <input type="text" id="walletInput" placeholder="Enter Wallet Address '0x...'">
         </div>
         <div id="walletMessage" style="margin-bottom: 16px; font-size: 0.95rem;"></div>
-
         <div class="button-wrapper">
-          <button type="button" id="walletSubmit" class="interact-button" disabled style="background: none; border: none; padding: 0;">
+          <button type="button" id="walletSubmit" class="interact-button" disabled style="background:none; border:none; padding:0;">
             <img src="./pagee_files/bt.png" alt="Start Earning Now" class="button-img">
           </button>
         </div>
       </form>
     </div>
 
-    <!-- Decorative Clouds -->
     <img src="pagee_files/20.png" alt="Cloud" class="cloud">
     <img src="pagee_files/20.png" alt="Cloud" class="cloud2">
   </div>
 
-  <!-- JavaScript Validation and Notifications -->
   <script>  
     (function () {
       const input = document.getElementById("walletInput");
